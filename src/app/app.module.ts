@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatDialogModule, MatDialogRef, MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './AlphaComponents/home/home.component';
@@ -8,21 +8,33 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './AlphaComponents/login/login.component';
 import { ArtistCardComponent } from './AlphaComponents/artist-card/artist-card.component';
 import { SongCardComponent } from './AlphaComponents/song-card/song-card.component';
-
+import {HttpClientModule} from '@angular/common/http'
+import { ApiserviceService } from './AlphaServices/apiservice.service';
+import { AddSongComponent } from './AlphaComponents/add-song/add-song.component';
+import { AddArtistComponent } from './AlphaComponents/add-artist/add-artist.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     ArtistCardComponent,
-    SongCardComponent
+    SongCardComponent,
+    AddSongComponent,
+    AddArtistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    ApiserviceService,
+    {provide:MatDialogRef , useValue:{} },
+    {provide:MAT_DIALOG_DATA, useValue: {} }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

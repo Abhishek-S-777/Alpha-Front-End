@@ -1,0 +1,62 @@
+body{
+  padding-top: 50px;
+  background: #232427;
+  z-index: 10003;
+}
+
+.spacing{
+  padding-top: 50px;
+}
+
+.newcontainer{
+  color: #ffffff;
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 15px;
+  background-color: #232427;
+  // width: 400px;
+  // height: 550px;
+}
+
+.account-block {
+  padding: 0;
+  background-image: url(https://images.unsplash.com/photo-1453090927415-5f45085b65c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1148&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
+
+.account-block .overlay {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.account-block .account-testimonial {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+}
+
+.text-theme {
+  color: #5369f8 !important;
+}
+
+.btn-theme {
+  background-color: #5369f8;
+  border-color: #5369f8;
+  color: #fff;
+}
