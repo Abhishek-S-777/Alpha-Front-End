@@ -1,9 +1,23 @@
 body{
   background: #232427;
+  min-height: 75rem;
+  padding-top: 4.5rem;
 }
 
 .spacing{
   padding-top: 50px;
+}
+
+.file-input{
+  display: none;
+}
+
+.flex {
+  width: 90%
+}
+
+.custom-font-size .multiselect-dropdown .dropdown-btn {
+  width: 100pt !important;
 }
 
 .account-block {

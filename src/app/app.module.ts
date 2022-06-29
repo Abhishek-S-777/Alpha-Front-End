@@ -12,6 +12,10 @@ import {HttpClientModule} from '@angular/common/http'
 import { ApiserviceService } from './AlphaServices/apiservice.service';
 import { AddSongComponent } from './AlphaComponents/add-song/add-song.component';
 import { AddArtistComponent } from './AlphaComponents/add-artist/add-artist.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,11 @@ import { AddArtistComponent } from './AlphaComponents/add-artist/add-artist.comp
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     ApiserviceService,

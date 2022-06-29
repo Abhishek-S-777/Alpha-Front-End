@@ -1,6 +1,6 @@
 <body>
   <div id="main-wrapper" class="container spacing">
-      <div class="row justify-content-center">
+      <div id="row-new" class="row justify-content-center">
           <div class="col-xl-10">
               <div class="card border-0">
                   <div class="card-body p-0">
@@ -12,12 +12,41 @@
                                   </div>
                                   <h6 class="h5 mb-0">Just Do it.</h6>
                                   <p class="text-muted mt-2 mb-5">Let the world dive into it.</p>
-                                  <form>
-                                      <div class="form-group"><label for="yourName">Song name</label><input id="yourName" class="form-control" type="text" /></div>
-                                      <div class="form-group"><label for="exampleInputEmail1">Date of release</label><input id="exampleInputEmail1" class="form-control" type="email" /></div>
-                                      <div class="form-group mb-5"><label for="exampleInputPassword1">Artists</label><input id="exampleInputPassword1" class="form-control" type="password" /></div>
-                                      <button class="btn btn-theme" type="submit">Go</button>&nbsp;
-                                      <button class="btn btn-theme" type="button" (click) = "addArtist()">Add Artist</button>
+                                  <form [formGroup]="addSongGroup">
+                                      <div class="form-group"><label for="yourName">Song name</label><input id="yourName" formControlName="songname" class="form-control" type="text" /></div>
+                                      <div class="form-group"><label for="exampleInputEmail1">Date of release</label><input id="exampleInputEmail1" formControlName="dateofrelease" class="form-control" type="text" /></div>
+                                      <!-- <div class="form-group mb-5"><label for="exampleInputPassword1">Artists</label><input id="exampleInputPassword1" formControlName="artists" class="form-control" type="text" /></div> -->
+                                      <div class="form-group ">
+                                        <label for="exampleInputPassword1">Artists</label>
+                                      <div class="input-group ">
+                                        <ng-multiselect-dropdown
+
+                                        [placeholder]="'Select Desired Artists'"
+                                        [settings]="dropdownSettings"
+                                        [data]="dropdownList"
+                                        [(ngModel)] = "selectedItems"
+                                        (onSelect)="onItemSelect($event)"
+                                        (onSelectAll)="onSelectAll($event)"
+                                        class="form-group flex .custom-font-size .multiselect-dropdown .dropdown-btn"
+
+                                        formControlName="artists"
+                                        >
+                                        </ng-multiselect-dropdown>
+                                        <button class="btn btn-theme input-group-btn" type="button" (click) = "addArtist()">+</button>
+                                      </div>
+                                    </div>
+                                      <div class="form-group mb-5"><label for="yourName">Upload Cover Art</label> <br>
+                                        <input type="file" accept=".png, .jpg, .jpeg" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                                        <!-- <div class="file-upload"> -->
+                                           <button mat-mini-fab color="primary" class="upload-btn"
+                                             (click)="fileUpload.click()">
+                                               <mat-icon>attach_file</mat-icon>
+                                           </button>
+                                           {{selectedFileName || "No file uploaded yet."}}
+                                       <!-- </div> -->
+                                      </div>
+                                      <button class="btn btn-theme" (click)="addSong()" type="submit">Go</button>&nbsp;
+
                                   </form>
                               </div>
                           </div>
