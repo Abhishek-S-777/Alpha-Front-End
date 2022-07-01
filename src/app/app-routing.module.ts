@@ -4,12 +4,14 @@ import { AddArtistComponent } from './AlphaComponents/add-artist/add-artist.comp
 import { AddSongComponent } from './AlphaComponents/add-song/add-song.component';
 import { HomeComponent } from './AlphaComponents/home/home.component';
 import { LoginComponent } from './AlphaComponents/login/login.component';
+import { SignupComponent } from './AlphaComponents/signup/signup.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'addsong', component: AddSongComponent },
   { path: 'addartist', component: AddArtistComponent },
+  { path: 'signup', component: SignupComponent},
 ];
 
 @NgModule({

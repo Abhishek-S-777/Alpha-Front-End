@@ -74,6 +74,15 @@ export class ApiserviceService {
     return this.http.post(this.baseUrl+this.tbl_artist_reference, data);
   }
 
+   // Inner join on song table.
+  innerJoinArtistTable():Observable<any>{
+    return this.http.get(this.baseUrl+"artist_inner_join");
+  }
+
+  // operation on user table..
+  userSignup(data:any):Observable<any>{
+    return this.http.post(this.baseUrl + "user_base",data);
+  }
 
 
 

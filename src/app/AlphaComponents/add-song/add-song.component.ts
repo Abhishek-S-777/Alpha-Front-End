@@ -122,18 +122,18 @@ export class AddSongComponent implements OnInit {
             "cover_art": this.selectedFile
           });
 
-          // let formParams = new FormData();
-          // formParams.append('file', this.selectedFile)
-          // this.addSongGroup.get("cover_art")?.setValue(this.selectedFile);
-
           console.log(this.addSongGroup.get("song_id")?.value)
           console.log(this.addSongGroup.get("artists")?.value)
           console.log("Cover art: ",this.addSongGroup.get("cover_art")?.value)
           // Insert into song_reference table
           console.log(this.addSongGroup.value)
           this.apiService.insertSongReferenceTable(this.addSongGroup.value).subscribe(res=>{
-            console.log("reference table api called: ",res);
+            console.log("Song reference table api called: ",res);
           })
+        })
+
+        this.apiService.insertArtistReferenceTable(this.addSongGroup.value).subscribe(res=>{
+          console.log("artist reference table api called: ",res);
         })
       })
       console.log(this.addSongGroup.value)

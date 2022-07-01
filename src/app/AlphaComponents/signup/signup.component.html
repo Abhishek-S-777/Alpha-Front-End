@@ -1,0 +1,42 @@
+<body>
+  <div id="main-wrapper" class="container spacing">
+      <div id="row-new" class="row justify-content-center">
+          <div class="col-xl-10">
+              <div class="card border-0">
+                  <div class="card-body p-0">
+                      <div class="row no-gutters">
+                        <div class="col-lg-6 d-none d-lg-inline-block">
+                          <div class="account-block rounded-right">
+                              <div class="overlay rounded-right"></div>
+                              <div class="account-testimonial">
+                                  <h4 class="text-white mb-4">Welcome to the Alpha community!</h4>
+                                  <p class="lead text-white">&quot;Be Obsessed or be Average.&quot;</p>
+                                  <p>- Grant Cardone</p>
+                              </div>
+                          </div>
+                      </div>
+                          <div class="col-lg-6">
+                              <div class="p-5">
+                                  <div class="mb-5">
+                                      <h3 class="h4 font-weight-bold text-theme">Signup</h3>
+                                  </div>
+                                  <h6 class="h5 mb-0">Be a part of the Alpha music world</h6>
+                                  <p class="text-muted mt-2 mb-5">Just Dive in</p>
+                                  <form [formGroup]="signupGroup">
+                                      <div class="form-group"><label for="yourName">Enter Username:</label><input id="yourName" formControlName="uname" class="form-control" type="text" /></div>
+                                      <div class="form-group"><label for="exampleInputEmail1">Enter Email-ID:</label><input id="exampleInputEmail1" formControlName="uemail" class="form-control" type="email" /></div>
+                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="password" /></div>
+                                      <button class="btn btn-theme" (click)="signup()" type="submit">Sign me in</button>&nbsp;
+                                  </form>
+                                  <p class="text-muted text-center mt-3 mb-0">Already have an account? <a class="text-primary ml-1" routerLink = "/login">login</a></p>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+      </div>
+  </div>
+</body>

@@ -1,81 +1,22 @@
 <!-- Top 10 songs cards -->
 <div class="container">
-<div class="row">
+<div   class="row">
   <span class="headings">Top 10 Songs of All Time!</span>
-      <div class="card">
+      <div *ngFor="let songs of newArray" class="card">
         <div class="imgBx">
-          <img src = {{testURL}} >
+          <img src = {{songs.cover_image}} >
         </div>
         <div class="contentBx">
-          <h2>Down On Me</h2>
+          <h2>{{songs.song_name}}</h2>
           <div class="size">
-            <h3>Jeremiah and 50 Cent</h3>
+            <h3>{{songs.artist_name}}</h3>
           </div>
           <div class="size">
-            <h3>9 June 2012</h3>
+            <h3>{{songs.release_date}}</h3>
           </div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="imgBx">
-          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80">
-        </div>
-        <div class="contentBx">
-          <h2>Goosebumps</h2>
-          <div class="size">
-            <h3>Jeremiah and 50 Cent</h3>
-          </div>
-          <div class="size">
-            <h3>9 June 2012</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="imgBx">
-          <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
-        </div>
-        <div class="contentBx">
-          <h2>Grenade</h2>
-          <div class="size">
-            <h3>Jeremiah and 50 Cent</h3>
-          </div>
-          <div class="size">
-            <h3>9 June 2012</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="imgBx">
-          <img src="https://images.unsplash.com/photo-1571330735066-03aaa9429d89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
-        </div>
-        <div class="contentBx">
-          <h2>Lollipop</h2>
-          <div class="size">
-            <h3>Jeremiah and 50 Cent</h3>
-          </div>
-          <div class="size">
-            <h3>9 June 2012</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="imgBx">
-          <img src="https://images.unsplash.com/photo-1616709324104-05258a9181af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80">
-        </div>
-        <div class="contentBx">
-          <h2>Candy Shop</h2>
-          <div class="size">
-            <h3>Jeremiah and 50 Cent</h3>
-          </div>
-          <div class="size">
-            <h3>9 June 2012</h3>
-          </div>
-        </div>
-      </div>
 </div>
 
 </div>
@@ -84,81 +25,20 @@
 <div class="container">
   <div class="row">
     <span class="headings">Top 10 Artists of All Time!</span>
-        <div class="card">
+        <div *ngFor="let artists of newArtistArray" class="card">
           <div class="imgBxArtist">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+            <img src={{artists.profile_pic}}>
           </div>
           <div class="contentBx">
-            <h2>Shreya Goshal</h2>
+            <h2>{{artists.artist_name}}</h2>
             <div class="size">
-              <h3>DOB: 01 Jan 1997</h3>
+              <h3>DOB: {{artists.dob}}</h3>
             </div>
             <div class="size">
-              <h3>Songs: Without me, East side, Gasoline</h3>
+              <h3>Songs: {{artists.song_name}}</h3>
             </div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="imgBxArtist">
-            <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60">
-          </div>
-          <div class="contentBx">
-            <h2>Bruno Mars</h2>
-            <div class="size">
-              <h3>DOB: 01 Jan 1997</h3>
-            </div>
-            <div class="size">
-              <h3>Songs: Grenade, Lighters, The way you are</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="imgBxArtist">
-            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60">
-          </div>
-          <div class="contentBx">
-            <h2>Lil Wayne</h2>
-            <div class="size">
-              <h3>DOB: 01 Jan 1997</h3>
-            </div>
-            <div class="size">
-              <h3>Songs: Lollipop, Down, Without me</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="imgBxArtist">
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60">
-          </div>
-          <div class="contentBx">
-            <h2>Kiara</h2>
-            <div class="size">
-              <h3>DOB: 01 Jan 1997</h3>
-            </div>
-            <div class="size">
-              <h3>Songs: Gold, Dancer, Flower</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="imgBxArtist">
-            <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60">
-          </div>
-          <div class="contentBx">
-            <h2>Omarion</h2>
-            <div class="size">
-              <h3>DOB: 01 Jan 1997</h3>
-            </div>
-            <div class="size">
-              <h3>Songs: Ice box, Distance, Love</h3>
-            </div>
-          </div>
-        </div>
-      </div>
 
   </div>
 

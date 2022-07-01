@@ -16,6 +16,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { SignupComponent } from './AlphaComponents/signup/signup.component';
+import { Md5 } from 'ts-md5/dist/md5';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
     ArtistCardComponent,
     SongCardComponent,
     AddSongComponent,
-    AddArtistComponent
+    AddArtistComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import {MatButtonModule} from '@angular/material/button';
   ],
   providers: [
     ApiserviceService,
+    Md5,
     {provide:MatDialogRef , useValue:{} },
     {provide:MAT_DIALOG_DATA, useValue: {} }
 
