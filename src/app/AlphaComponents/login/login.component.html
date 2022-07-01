@@ -13,12 +13,14 @@
                                   <h6 class="h5 mb-0">Immerse into the world of music.</h6>
                                   <p class="text-muted mt-2 mb-5">Groove in to the beat.</p>
                                   <form [formGroup]="loginGroup">
-                                      <div class="form-group"><label for="yourName">Enter Username:</label><input id="yourName" formControlName="uname" class="form-control" type="text" /></div>
-                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="text" /></div>
+                                      <div class="form-group"><label for="yourName">Enter Email-ID:</label><input id="yourName" formControlName="uemail" class="form-control" type="email" /></div>
+                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="password" /></div>
 
                                       <button class="btn btn-theme" (click)="login()" type="submit">Log me in</button>&nbsp;
+                                      <!-- <button class="btn btn-theme" (click)="popup()" type="submit">popup</button>&nbsp; -->
 
                                   </form>
+                                  <p class="text-muted text-center mt-3 mb-0">Not an user? <a class="text-primary ml-1" routerLink = "/signup">Signup</a></p>
                               </div>
                           </div>
                           <div class="col-lg-6 d-none d-lg-inline-block">
@@ -27,7 +29,7 @@
                                   <div class="account-testimonial">
                                       <h4 class="text-white mb-4">Welcome to Alpha!</h4>
                                       <p class="lead text-white">&quot;I'd be fearless. <br> I'd be an Alpha type&quot;</p>
-                                      <p>- Beethoven</p>
+                                      <p>- Unknown</p>
                                   </div>
                               </div>
                           </div>

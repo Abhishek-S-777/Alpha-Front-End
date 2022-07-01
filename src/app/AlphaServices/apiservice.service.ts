@@ -84,6 +84,11 @@ export class ApiserviceService {
     return this.http.post(this.baseUrl + "user_base",data);
   }
 
+  // Login..
+  userLogin(data:any):Observable<any>{
+    return this.http.get(this.baseUrl+"user_base_login",{params:data})
+  }
+
 
 
 }
