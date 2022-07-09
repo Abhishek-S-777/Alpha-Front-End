@@ -1,6 +1,11 @@
-import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+import { FormControl, FormGroup } from '@angular/forms';
+import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 
 
 @Component({
@@ -9,6 +14,34 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  addRatingGroup = new FormGroup({
+    "uid": new FormControl(''),
+    "songid": new FormControl(''),
+    "artistid": new FormControl(''),
+    "rating": new FormControl(''),
+
+  });
+
+
+  dtOptions: DataTables.Settings = {
+    pagingType: 'full_numbers',
+    pageLength: 5,
+    destroy: true
+  };
+  dtOptions1: DataTables.Settings = {
+    pagingType: 'full_numbers',
+    pageLength: 5,
+    destroy: true
+  };
+
+
+
+  dtTrigger: Subject<any> = new Subject<any>();
+  dtTrigger1: Subject<any> = new Subject<any>();
+
+  @ViewChild(DataTableDirective, {static: false}) dtElement !: DataTableDirective;
+  @ViewChild(DataTableDirective, {static: false}) dtElement1 !: DataTableDirective;
 
   baseDir: string = '';
   songTableData: any = [];
@@ -20,19 +53,67 @@ export class HomeComponent implements OnInit {
   profile_pic: string = '';
 
   newArray:any = [];
+  top10Songs:any = [];
+
   newArtistArray:any = [];
+  top10Artists:any = [];
 
+  rating:any;
+  currentRate = 0;
 
+  max = 5;
+  rate = 3;
+  isReadonly = false;
 
+  ratingComponent: number = 3;
+  starCount: number = 5;
 
-  constructor(private apiService: ApiserviceService, private sanitizer:DomSanitizer) { }
+  userID : any;
+  userSongRatingsData : any = [];
+  userArtistRatingsData : any = [];
+  formData = new FormData();
+  constructor(
+    private apiService: ApiserviceService,
+    private sanitizer:DomSanitizer,
+    private ch:ChangeDetectorRef
+    ) { }
+
+  render(){
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{
+      console.log("Render called")
+      dtInstance.destroy();
+      this.ngOnInit();
+    })
+  }
+  render1(){
+    this.dtElement1.dtInstance.then((dtInstance: DataTables.Api)=>{
+      console.log("Render1 called")
+      dtInstance.destroy();
+      this.ngOnInit();
+    })
+    // this.render()
+  }
+
 
   ngOnInit(): void {
+    // this.userID = parseInt(localStorage.getItem("userID"));
+    this.userID = JSON.parse(localStorage.getItem("userID")!);
+    console.log(this.userID);
+    console.log(typeof(this.userID));
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("uid",this.userID);
+
     this.apiService.getBaseDirectory().subscribe(res=>{
+      this.apiService.userRatingDetails(queryParams).subscribe(res=>{
+        this.userSongRatingsData = res.data;
+        console.log("User songs rating data", this.userSongRatingsData);
+      })
+
       this.baseDir = res.dir
       console.log(this.baseDir)
       this.apiService.innerJoinSongTable().subscribe(res=>{
         this.songTableData = res.data;
+
         console.log(this.songTableData);
 
         this.newArray = this.songTableData.reduce(
@@ -52,6 +133,8 @@ export class HomeComponent implements OnInit {
               ]
           },
           []
+
+
         )
 
         this.newArray.forEach((element:any) => {
@@ -66,12 +149,42 @@ export class HomeComponent implements OnInit {
           // element.cover_image = this.baseDir + sub_string;
 
         });
+
+        this.newArray.map((item:any) => {
+          let songID = item.song_id;
+          this.userSongRatingsData.map((item2:any) => {
+            let songID2 = item2.song_id;
+            if (songID === songID2) {
+              item['song_rating'] = item2.song_rating;
+              // console.log(item);
+            }
+          });
+
+        },
+        // this.ch.detectChanges(),
+        this.dtTrigger.next(),
+        // this.dtTrigger1.next()
+        );
         console.log(this.newArray)
+
+        this.top10Songs = this.newArray.sort((a:any, b:any) => b.average_rating-a.average_rating).slice(0,10);
+        console.log("Top 10 songs", this.top10Songs)
+
+      })
+
+
+
+      // console.log("Top 10 songs", this.top10Songs)
+
+
+      this.apiService.userArtistRatingDetails(queryParams).subscribe(res=>{
+        this.userArtistRatingsData = res.data;
       })
 
       this.apiService.innerJoinArtistTable().subscribe(res=>{
         this.artistTableData = res.data;
         console.log(this.artistTableData);
+        // console.log("Artists rating data", this.userSongRatingsData);
 
         this.newArtistArray = this.artistTableData.reduce(
           (acc:any, song:any) => {
@@ -107,10 +220,72 @@ export class HomeComponent implements OnInit {
 
 
         console.log(this.newArtistArray);
+
+        this.newArtistArray.map((item:any) => {
+          let songID = item.artist_id;
+          this.userArtistRatingsData.map((item2:any) => {
+            let songID2 = item2.artist_id;
+            if (songID === songID2) {
+              item['artist_rating'] = item2.artist_rating;
+              // console.log(item);
+            }
+          });
+
+        },
+        this.dtTrigger1.next(),
+        );
+        console.log(this.newArtistArray)
+
+        this.top10Artists = this.newArtistArray.sort((a:any, b:any) => b.average_rating-a.average_rating).slice(0,10);
+        console.log("Top 10 artists", this.top10Artists)
+
+
       })
 
 
     })
 
   }
+
+
+
+  onRatingChanged(rating: any, songs?:any) {
+
+    this.addRatingGroup.patchValue({
+      "uid": this.userID,
+      "songid": songs.song_id,
+      "rating": rating
+    })
+
+    this.apiService.insertUserReferenceTable(this.addRatingGroup.value).subscribe(res=>{
+      console.log("Inserted and updated user reference");
+      this.render()
+      this.apiService.calculateAndInsertAverageSongRating().subscribe(res=>{
+
+      })
+    })
+
+
+
+  }
+  onRatingChanged1(rating: any, artists?:any) {
+    console.log("Artist on Change called")
+    this.addRatingGroup.patchValue({
+      "uid": this.userID,
+      "artistid": artists.artist_id,
+      "rating": rating
+    })
+    this.apiService.insertUserArtistReferenceTable(this.addRatingGroup.value).subscribe(res=>{
+      console.log("Inserted and updated user reference artist");
+      this.render1()
+      // window.location.reload()
+      this.apiService.calculateAndInsertAverageArtistRating().subscribe(res=>{
+
+      })
+    })
+
+
+
+  }
+
 }

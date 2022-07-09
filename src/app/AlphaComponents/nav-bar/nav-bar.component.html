@@ -1,0 +1,21 @@
+<nav id="mainNav" class="navcolor navbar navbar-dark bg-dark navbar-expand-md fixed-top navbar-shrink py-3">
+  <div class="container">
+  <a class="navbar-brand d-flex align-items-center" href="/">
+    <span>Alpha</span>
+  </a>
+  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+    <span class="visually-hidden">Toggle navigation</span>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+      <div id="navcol-1" class="collapse navbar-collapse">
+          <ul class="navbar-nav mx-auto">
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/">Home</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/addsong">Music</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/addartist">Artists</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" href="contacts.html">Contacts</a></li>
+          </ul>
+          <a *ngIf="userID == ''" class="btn btnnew shadow navstyle" role="button" routerLink="/signup">Sign up</a>
+          <a *ngIf="userID != ''" (click) = "logout()" class="btn btnnew shadow navstyle" role="button">Logout</a>
+      </div>
+  </div>
+</nav>

@@ -16,9 +16,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { SignupComponent } from './AlphaComponents/signup/signup.component';
 import { Md5 } from 'ts-md5/dist/md5';
 import { PopupComponent } from './AlphaComponents/popup/popup.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RatingComponent } from './AlphaComponents/rating/rating.component';
+import {DataTableDirective, DataTablesModule} from 'angular-datatables';
+import { NavBarComponent } from './AlphaComponents/nav-bar/nav-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +37,9 @@ import { PopupComponent } from './AlphaComponents/popup/popup.component';
     AddSongComponent,
     AddArtistComponent,
     SignupComponent,
-    PopupComponent
+    PopupComponent,
+    RatingComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,14 @@ import { PopupComponent } from './AlphaComponents/popup/popup.component';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    NgbModule,
+    MatInputModule,
+    MatFormFieldModule,
+    DataTablesModule
+  ],
+  exports:[
+    DataTablesModule
   ],
   providers: [
     ApiserviceService,

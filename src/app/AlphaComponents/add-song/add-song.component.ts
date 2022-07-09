@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
 import { AddArtistComponent } from '../add-artist/add-artist.component';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ViewportScroller } from '@angular/common';
+import { PopupComponent } from '../popup/popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-song',
@@ -13,6 +15,8 @@ import { ViewportScroller } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class AddSongComponent implements OnInit {
+
+  @ViewChild('myInput') myInputVariable!: ElementRef;
 
 
   addSongGroup = new FormGroup({
@@ -23,7 +27,7 @@ export class AddSongComponent implements OnInit {
     "cover_art": new FormControl(''),
   });
 
-  constructor(private  dialog:  MatDialog, private apiService: ApiserviceService) { }
+  constructor(private  dialog:MatDialog, private apiService:ApiserviceService, private router:Router) { }
 
   dropdownList : any = [];
   selectedItems : any = [];
@@ -35,11 +39,11 @@ export class AddSongComponent implements OnInit {
   selectedFileName : string = '';
   allArtists : any = [];
   formData =  new FormData();
-
+  isUploaded:boolean = false;
 
   ngOnInit(): void {
 
-
+    console.log(this.selectedFile)
     this.apiService.getBaseDirectory().subscribe(res=>{
       console.log(res);
     })
@@ -110,7 +114,9 @@ export class AddSongComponent implements OnInit {
 
       this.apiService.insertSongBaseTable(this.formData).subscribe(res=>{
         console.log(res);
+        this.apiService.insertUserReferenceTable(this.formData).subscribe (res=>{
 
+        })
         // Get the last inserted song_id
         this.apiService.getLastInsertedID().subscribe(res=>{
           this.data = res;
@@ -129,6 +135,7 @@ export class AddSongComponent implements OnInit {
           console.log(this.addSongGroup.value)
           this.apiService.insertSongReferenceTable(this.addSongGroup.value).subscribe(res=>{
             console.log("Song reference table api called: ",res);
+
           })
         })
 
@@ -137,6 +144,25 @@ export class AddSongComponent implements OnInit {
         })
       })
       console.log(this.addSongGroup.value)
+      console.log(this.isUploaded)
+      const dialogobj =
+      this.dialog.open(PopupComponent,
+        {data:{
+          message: "Song Added successfully!"
+        },
+        height : "auto",
+        width : "300px",
+        disableClose: true
+      });
+
+      dialogobj.afterClosed().subscribe(()=>{
+        this.addSongGroup.reset();
+        window.location.reload();
+      })
+      return dialogobj;
+    }
+    else{
+      return null
     }
   }
 

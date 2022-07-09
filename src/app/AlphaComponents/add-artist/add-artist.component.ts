@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dialog';
 import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-add-artist',
@@ -23,7 +24,7 @@ export class AddArtistComponent implements OnInit {
     // "profile_pic": new FormControl(''),
   });
 
-  constructor(@Optional() private  dialogRef:  MatDialogRef<AddArtistComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any, private apiService: ApiserviceService) { }
+  constructor(private  dialog:MatDialog, @Optional() private  dialogRef:  MatDialogRef<AddArtistComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any, private apiService: ApiserviceService) { }
 
   ngOnInit(): void {
   }
@@ -54,6 +55,20 @@ export class AddArtistComponent implements OnInit {
       this.apiService.insertArtistBaseTable(this.formData).subscribe(res=>{
         console.log(res);
         this.dialogRef.close()
+        const dialogobj =
+        this.dialog.open(PopupComponent,
+          {data:{
+            message: "Artist Added successfully!"
+          },
+          height : "auto",
+          width : "300px",
+          disableClose: true
+        });
+
+        dialogobj.afterClosed().subscribe(()=>{
+
+        })
+        return dialogobj;
 
         // // Get the last inserted song_id
         // this.apiService.getLastInsertedIDArtist().subscribe(res=>{
