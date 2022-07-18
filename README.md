@@ -19,6 +19,10 @@ New songs and artists can be added to the database.
 * There are a total of 7 tables, which are normalized (2NF).
 * Node JS is used to connect the front-end to the back-end using the REST APIs.
 
+### Alpha Demo ###
+
+https://user-images.githubusercontent.com/89989890/179609242-f4cdac7e-ff35-4b6c-991a-4259c4c7b162.mp4
+
 ### Sample Screenshots ###
 
 ***Sign up:***
