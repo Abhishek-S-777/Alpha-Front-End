@@ -10,7 +10,7 @@ New songs and artists can be added to the database.
 * **REST APIs** are built using **Node JS** to communicate with the MySQL DB to perform operations.
 * Users can register and login to *stream songs, rate various songs and artists.*
 * **Top songs and artists** are displayed in the home page based on the average rating of each user registered with Alpha.
-* Users can also **add songs by selecting existing artists or by adding new artists from the same page** to the database.
+* Users can also **add songs by selecting existing artists or by adding new artists from the same page with the cover art** to the database.
 
 #### Back-end Features ####
 * Link to the [Alpha back-end repository](https://github.com/Abhishek-S-777/Alpha-Back-End)
