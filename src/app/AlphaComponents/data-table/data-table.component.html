@@ -1,0 +1,18 @@
+<div class="container1">
+  <span class="headings">{{title}}</span>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+      <tr>
+        <th *ngFor="let key of colData"> {{key.header}} </th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of newArray">
+        <td [ngClass]= "{'songs': key.header === 'Songs'}" *ngFor="let key of colData">{{data[key.field]}}</td>
+        <td *ngIf="type == 'songs'"><app-rating [rating]="data.song_rating" (ratingUpdated)="onRatingChanged($event, data)"></app-rating></td>
+        <td *ngIf="type == 'artists'"><app-rating [rating]="data.artist_rating" (ratingUpdated)="onRatingChanged($event, data)"></app-rating></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

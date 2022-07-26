@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
 
 @Component({
   selector: 'app-song-card',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongCardComponent implements OnInit {
 
-  constructor() { }
+  @Input('top10Songs') top10Songs:any = [];
+
+  constructor(private apiService: ApiserviceService) { }
 
   ngOnInit(): void {
   }

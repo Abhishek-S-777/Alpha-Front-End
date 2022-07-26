@@ -1,1 +1,22 @@
-<p>artist-card works!</p>
+<!-- Top 10 Artists Card -->
+<div class="container">
+  <div class="row">
+    <span class="headings">Top 10 Artists of All Time!</span>
+        <div *ngFor="let artists of top10Artists" class="card">
+          <div class="imgBxArtist">
+            <img src={{artists.profile_pic}}>
+          </div>
+          <div class="contentBx">
+            <h2>{{artists.artist_name}}</h2>
+            <div class="size">
+              <h3>DOB: {{artists.dob}}</h3>
+            </div>
+            <div class="size">
+              <h3>Songs: {{artists.song_name}}</h3>
+            </div>
+            <div class="size">
+              <app-rating [rating]="artists.average_rating"></app-rating>
+            </div>
+          </div>
+        </div>
+  </div>

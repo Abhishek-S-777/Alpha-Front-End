@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -40,8 +40,14 @@ export class HomeComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   dtTrigger1: Subject<any> = new Subject<any>();
 
-  @ViewChild(DataTableDirective, {static: false}) dtElement !: DataTableDirective;
-  @ViewChild(DataTableDirective, {static: false}) dtElement1 !: DataTableDirective;
+
+  // // If we want to use multiple data tables in a single component..
+  // @ViewChildren(DataTableDirective) dtElements!: QueryList<DataTableDirective>;
+
+
+  // // If we want to use single data tables in a single component..
+  // @ViewChild(DataTableDirective, {static: false}) dtElement !: DataTableDirective;
+  // @ViewChild(DataTableDirective, {static: false}) dtElement1 !: DataTableDirective;
 
   baseDir: string = '';
   songTableData: any = [];
@@ -72,31 +78,13 @@ export class HomeComponent implements OnInit {
   userSongRatingsData : any = [];
   userArtistRatingsData : any = [];
   formData = new FormData();
+
   constructor(
     private apiService: ApiserviceService,
-    private sanitizer:DomSanitizer,
-    private ch:ChangeDetectorRef
     ) { }
-
-  render(){
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api)=>{
-      console.log("Render called")
-      dtInstance.destroy();
-      this.ngOnInit();
-    })
-  }
-  render1(){
-    this.dtElement1.dtInstance.then((dtInstance: DataTables.Api)=>{
-      console.log("Render1 called")
-      dtInstance.destroy();
-      this.ngOnInit();
-    })
-    // this.render()
-  }
 
 
   ngOnInit(): void {
-    // this.userID = parseInt(localStorage.getItem("userID"));
     this.userID = JSON.parse(localStorage.getItem("userID")!);
     console.log(this.userID);
     console.log(typeof(this.userID));
@@ -162,8 +150,7 @@ export class HomeComponent implements OnInit {
 
         },
         // this.ch.detectChanges(),
-        this.dtTrigger.next(),
-        // this.dtTrigger1.next()
+        // this.dtTrigger.next(),
         );
         console.log(this.newArray)
 
@@ -232,7 +219,7 @@ export class HomeComponent implements OnInit {
           });
 
         },
-        this.dtTrigger1.next(),
+        // this.dtTrigger1.next(),
         );
         console.log(this.newArtistArray)
 
@@ -244,47 +231,6 @@ export class HomeComponent implements OnInit {
 
 
     })
-
-  }
-
-
-
-  onRatingChanged(rating: any, songs?:any) {
-
-    this.addRatingGroup.patchValue({
-      "uid": this.userID,
-      "songid": songs.song_id,
-      "rating": rating
-    })
-
-    this.apiService.insertUserReferenceTable(this.addRatingGroup.value).subscribe(res=>{
-      console.log("Inserted and updated user reference");
-      this.render()
-      this.apiService.calculateAndInsertAverageSongRating().subscribe(res=>{
-
-      })
-    })
-
-
-
-  }
-  onRatingChanged1(rating: any, artists?:any) {
-    console.log("Artist on Change called")
-    this.addRatingGroup.patchValue({
-      "uid": this.userID,
-      "artistid": artists.artist_id,
-      "rating": rating
-    })
-    this.apiService.insertUserArtistReferenceTable(this.addRatingGroup.value).subscribe(res=>{
-      console.log("Inserted and updated user reference artist");
-      this.render1()
-      // window.location.reload()
-      this.apiService.calculateAndInsertAverageArtistRating().subscribe(res=>{
-
-      })
-    })
-
-
 
   }
 

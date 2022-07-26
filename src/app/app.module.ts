@@ -26,6 +26,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './AlphaComponents/rating/rating.component';
 import {DataTableDirective, DataTablesModule} from 'angular-datatables';
 import { NavBarComponent } from './AlphaComponents/nav-bar/nav-bar.component';
+import { DataTableComponent } from './AlphaComponents/data-table/data-table.component';
+import { AllSongsComponent } from './AlphaComponents/all-songs/all-songs.component';
+import { AllArtistsComponent } from './AlphaComponents/all-artists/all-artists.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { NavBarComponent } from './AlphaComponents/nav-bar/nav-bar.component';
     SignupComponent,
     PopupComponent,
     RatingComponent,
-    NavBarComponent
+    NavBarComponent,
+    DataTableComponent,
+    AllSongsComponent,
+    AllArtistsComponent
   ],
   imports: [
     BrowserModule,

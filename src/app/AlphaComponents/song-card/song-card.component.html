@@ -1,0 +1,23 @@
+<!-- Top 10 songs cards -->
+<div class="container">
+  <div class="row">
+    <span class="headings">Top 10 Songs of All Time!</span>
+        <div *ngFor="let songs of top10Songs" class="card">
+          <div class="imgBx">
+            <img src = {{songs.cover_image}} >
+          </div>
+          <div class="contentBx">
+            <h2>{{songs.song_name}}</h2>
+            <div class="size">
+              <h3>{{songs.artist_name}}</h3>
+            </div>
+            <div class="size">
+              <h3>{{songs.release_date}}</h3>
+            </div>
+            <div class="size">
+              <app-rating [rating]="songs.average_rating"></app-rating>
+            </div>
+          </div>
+        </div>
+  </div>
+  </div>

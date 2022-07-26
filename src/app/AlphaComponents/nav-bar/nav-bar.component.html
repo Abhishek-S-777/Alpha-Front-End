@@ -10,9 +10,9 @@
       <div id="navcol-1" class="collapse navbar-collapse">
           <ul class="navbar-nav mx-auto">
               <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/">Home</a></li>
-              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/addsong">Music</a></li>
-              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/addartist">Artists</a></li>
-              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" href="contacts.html">Contacts</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/allsongs">Music</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/allartists">Artists</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" href="contacts.html">Contact Us</a></li>
           </ul>
           <a *ngIf="userID == ''" class="btn btnnew shadow navstyle" role="button" routerLink="/signup">Sign up</a>
           <a *ngIf="userID != ''" (click) = "logout()" class="btn btnnew shadow navstyle" role="button">Logout</a>
