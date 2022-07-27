@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
@@ -43,7 +44,7 @@ export class DataTableComponent implements OnInit {
   profile_pic: string = '';
   title:string = "";
 
-  constructor(private apiService: ApiserviceService,) { }
+  constructor(private apiService: ApiserviceService, private router:Router) { }
 
   dtOptions: DataTables.Settings = {
     pagingType: 'full_numbers',
@@ -105,10 +106,10 @@ export class DataTableComponent implements OnInit {
         })
       })
     }
+  }
 
-
-
-
+  addSongs(){
+    this.router.navigate(['/addsong'])
   }
 
   ngOnInit(): void {

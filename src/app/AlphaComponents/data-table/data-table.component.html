@@ -1,5 +1,14 @@
 <div class="container1">
   <span class="headings">{{title}}</span>
+
+  <button class="floating" *ngIf = "type == 'songs'" mat-fab (click) = "addSongs()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <div class="spacing">
+
+  </div>
+
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
     <thead>
       <tr>

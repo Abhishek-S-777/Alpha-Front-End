@@ -1,0 +1,41 @@
+<body>
+  <div id="main-wrapper" class="container spacing">
+      <div id="row-new" class="row justify-content-center">
+          <div class="col-xl-10">
+              <div class="card border-0">
+                  <div class="card-body p-0">
+                      <div class="row no-gutters">
+                        <div class="col-lg-6 d-none d-lg-inline-block">
+                          <div class="account-block rounded-right">
+                              <div class="overlay rounded-right"></div>
+                              <div class="account-testimonial">
+                                  <h4 class="text-white mb-4">We're open for any suggestion or just to have a chat</h4>
+                                  <p class="lead text-white">&quot;In teamwork silence isn't golden, it's deadly.&quot;</p>
+                                  <p>- Mark Sanborn</p>
+                              </div>
+                          </div>
+                      </div>
+                          <div class="col-lg-6">
+                              <div class="p-5">
+                                  <div class="mb-5">
+                                      <h3 class="h4 font-weight-bold text-theme">Contact Us</h3>
+                                  </div>
+                                  <h6 class="h5 mb-0">We'd Love to Hear From You</h6>
+                                  <p class="text-muted mt-2 mb-5">Get in touch!</p>
+                                  <form [formGroup]="contactUsGroup">
+                                      <div class="form-group"><label for="yourName">Name:</label><input id="yourName" formControlName="uname" class="form-control" type="text" /></div>
+                                      <div class="form-group"><label for="exampleInputEmail1">Email-ID:</label><input id="exampleInputEmail1" formControlName="uemail" class="form-control" type="email" /></div>
+                                      <div class="form-group mb-5"><label for="message">Message:</label><textarea id="message" formControlName="umessage" class="form-control" type="text"></textarea></div>
+                                      <button class="btn btn-theme" (click)="contactUs()" type="submit">Send Message</button>&nbsp;
+                                  </form>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+      </div>
+  </div>
+</body>

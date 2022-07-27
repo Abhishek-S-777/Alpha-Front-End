@@ -29,6 +29,9 @@ import { NavBarComponent } from './AlphaComponents/nav-bar/nav-bar.component';
 import { DataTableComponent } from './AlphaComponents/data-table/data-table.component';
 import { AllSongsComponent } from './AlphaComponents/all-songs/all-songs.component';
 import { AllArtistsComponent } from './AlphaComponents/all-artists/all-artists.component';
+import { ContactUsComponent } from './AlphaComponents/contact-us/contact-us.component';
+import { DetailsPageComponent } from './AlphaComponents/details-page/details-page.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { AllArtistsComponent } from './AlphaComponents/all-artists/all-artists.c
     NavBarComponent,
     DataTableComponent,
     AllSongsComponent,
-    AllArtistsComponent
+    AllArtistsComponent,
+    ContactUsComponent,
+    DetailsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ import { AllArtistsComponent } from './AlphaComponents/all-artists/all-artists.c
     NgbModule,
     MatInputModule,
     MatFormFieldModule,
-    DataTablesModule
+    DataTablesModule,
+
   ],
   exports:[
     DataTablesModule

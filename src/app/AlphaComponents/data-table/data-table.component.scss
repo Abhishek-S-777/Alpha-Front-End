@@ -4,8 +4,19 @@
   padding-left: 45px;
   padding-right: 45px;
   padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #232427;
   color: rgb(255, 255, 255);
+}
+
+.spacing{
+  margin-top: 20px !important;
+}
+
+.floating{
+  float: right;
+  background-color: #5369f8;
+  margin-right: 50px;
 }
 
 th.sorting {

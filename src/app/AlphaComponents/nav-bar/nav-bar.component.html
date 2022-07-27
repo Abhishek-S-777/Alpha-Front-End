@@ -12,7 +12,7 @@
               <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/">Home</a></li>
               <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/allsongs">Music</a></li>
               <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/allartists">Artists</a></li>
-              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" href="contacts.html">Contact Us</a></li>
+              <li *ngIf="router.url != '/login' && router.url != '/signup'" class="nav-item"><a class="nav-link navstyle" routerLink="/contactus">Contact Us</a></li>
           </ul>
           <a *ngIf="userID == ''" class="btn btnnew shadow navstyle" role="button" routerLink="/signup">Sign up</a>
           <a *ngIf="userID != ''" (click) = "logout()" class="btn btnnew shadow navstyle" role="button">Logout</a>
