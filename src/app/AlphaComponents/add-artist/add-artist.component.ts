@@ -16,6 +16,7 @@ export class AddArtistComponent implements OnInit {
   selectedFile !: File;
   selectedFileName : string = '';
   formData =  new FormData();
+  submit : boolean = false;
 
   addArtistGroup = new FormGroup({
     "artistname": new FormControl('',Validators.required),
@@ -43,6 +44,7 @@ export class AddArtistComponent implements OnInit {
 
 
   addArtist(){
+    this.submit = true;
     if(this.addArtistGroup.valid){
       // Insert into song_base table
       // console.log("Before inserting base song",this.addArtistGroup.value)

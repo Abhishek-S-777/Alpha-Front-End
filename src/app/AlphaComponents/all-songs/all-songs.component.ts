@@ -16,9 +16,11 @@ export class AllSongsComponent implements OnInit {
 
   colData:any = [
     {header: "ID", field: "song_id"},
+    {header: "Cover", field: "cover_image"},
     {header: "Title", field: "song_name"},
     {header: "Release", field: "release_date"},
     {header: "Artists", field: "artist_name"},
+    {header: "Rating", field: "song_rating"},
   ]
 
   ngOnInit(): void {

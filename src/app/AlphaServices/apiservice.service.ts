@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
 
+  detailsData: any;
+
   constructor(private http:HttpClient) {
 
   }
@@ -21,6 +23,13 @@ export class ApiserviceService {
   tbl_user_reference = 'user_reference';
 
   apiUrl = 'http://localhost:3000/user';
+
+  setDetailsData(data:any){
+    this.detailsData = data;
+  }
+  getDetailsData(){
+    return this.detailsData;
+  }
 
    // Get the base directory of the server
    getBaseDirectory():Observable<any>{

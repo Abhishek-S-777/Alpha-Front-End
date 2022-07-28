@@ -14,11 +14,29 @@
              <mat-icon>attach_file</mat-icon>
          </button>
          {{selectedFileName || "No file uploaded yet."}}
+         <br>
+         <small class="text-danger"
+            *ngIf="selectedFileName === '' && submit === true">
+            Please select a profile picture
+         </small>
      <!-- </div> -->
     </div>
       <div class="form-group"><label for="yourName">Artist name</label><input id="yourName" formControlName="artistname" class="form-control" type="text" /></div>
-      <div class="form-group"><label for="exampleInputEmail1">Date of Birth</label><input id="exampleInputEmail1" formControlName="dateofbirth" class="form-control" type="text" /></div>
-      <div class="form-group mb-5"><label for="exampleInputPassword1">Biography</label><textarea id="exampleInputPassword1" formControlName="biography" class="form-control" type="text"> </textarea></div>
+      <small class="text-danger"
+        *ngIf="addArtistGroup.get('artistname')?.hasError('required') && submit == true">
+        Please enter a valid artist name
+      </small>
+      <div class="form-group"><label for="exampleInputEmail1">Date of Birth</label><input id="exampleInputEmail1" formControlName="dateofbirth" class="form-control" type="date" /></div>
+      <small class="text-danger"
+        *ngIf="addArtistGroup.get('dateofbirth')?.hasError('required') && submit == true">
+        Please select a valid date of birth
+      </small>
+      <div class="form-group mb-5"><label for="exampleInputPassword1">Biography</label><textarea id="exampleInputPassword1" formControlName="biography" class="form-control" type="text"> </textarea>
+        <small class="text-danger"
+          *ngIf="addArtistGroup.get('biography')?.hasError('required') && submit == true">
+          Please enter the biography
+        </small>
+      </div>
       <button (click)="addArtist()" class="btn btn-theme" type="submit">Go</button>
   </form>
   </div>

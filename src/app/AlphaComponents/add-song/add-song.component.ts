@@ -40,6 +40,7 @@ export class AddSongComponent implements OnInit {
   allArtists : any = [];
   formData =  new FormData();
   isUploaded:boolean = false;
+  submit : boolean = false;
 
   ngOnInit(): void {
 
@@ -51,18 +52,6 @@ export class AddSongComponent implements OnInit {
       this.dropdownList = res.data;
       console.log("All artists name",this.dropdownList);
     })
-
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'Jeremiah' },
-    //   { item_id: 2, item_text: '50 Cent' },
-    //   { item_id: 3, item_text: 'Eminem' },
-    //   { item_id: 4, item_text: 'Lil Wayne' },
-    //   { item_id: 5, item_text: 'Bruno Mars' }
-    // ];
-    // this.selectedItems = [
-    //   // { item_id: 3, item_text: 'Pune' },
-    //   // { item_id: 4, item_text: 'Navsari' }
-    // ];
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -103,6 +92,7 @@ export class AddSongComponent implements OnInit {
   }
 
   addSong(){
+    this.submit = true;
     if(this.addSongGroup.valid){
       // Insert into song_base table
       // console.log("Before inserting base song",this.addSongGroup.value)

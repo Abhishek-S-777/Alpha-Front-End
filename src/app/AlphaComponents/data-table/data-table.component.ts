@@ -26,6 +26,7 @@ export class DataTableComponent implements OnInit {
   });
 
   dtTrigger: Subject<any> = new Subject<any>();
+  dataLoaded !: boolean;
 
   userSongRatingsData : any = [];
   userID: any;
@@ -102,7 +103,6 @@ export class DataTableComponent implements OnInit {
         this.render()
         // window.location.reload()
         this.apiService.calculateAndInsertAverageArtistRating().subscribe(res=>{
-
         })
       })
     }
@@ -110,6 +110,34 @@ export class DataTableComponent implements OnInit {
 
   addSongs(){
     this.router.navigate(['/addsong'])
+  }
+  anchorClick(data:any){
+    var detailsField: any = [];
+    if(this.type == "songs"){
+      // detailsField = [
+      //   {field: "cover_image"},
+      //   {field: "song_name"},
+      //   {field: "artist_name"},
+      //   {field: "release_date"},
+      //   {field: "average_rating"},
+      // ];
+    }
+
+    else if(this.type == "artists"){
+      // detailsField = [
+      //   {field: "profile_pic"},
+      //   {field: "artist_name"},
+      //   {field: "dob"},
+      //   {field: "song_name"},
+      //   {field: "average_rating"},
+      // ];
+    }
+
+    localStorage.setItem("details", JSON.stringify(data));
+    localStorage.setItem("field", JSON.stringify(detailsField));
+    // this.apiService.setDetailsData(data);
+    this.router.navigate(['/detailspage',{type: this.type}]);
+
   }
 
   ngOnInit(): void {
@@ -181,6 +209,7 @@ export class DataTableComponent implements OnInit {
 
           },
           this.dtTrigger.next(),
+          this.dataLoaded = true,
           );
           console.log(this.newArray)
           this.top10Songs = this.newArray.sort((a:any, b:any) => b.average_rating-a.average_rating).slice(0,10);
@@ -247,6 +276,8 @@ export class DataTableComponent implements OnInit {
 
         },
         this.dtTrigger.next(),
+        this.dataLoaded = true,
+        // console.log(this.dataLoaded),
         );
         console.log(this.newArray)
 

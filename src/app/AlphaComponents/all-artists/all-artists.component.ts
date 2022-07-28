@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class AllArtistsComponent implements OnInit {
 
   type: string = "artists";
-  
+
   colData:any = [
     {header: "ID", field: "artist_id"},
+    {header: "Profile", field: "profile_pic"},
     {header: "Name", field: "artist_name"},
     {header: "DOB", field: "dob"},
     {header: "Songs", field: "song_name"},
+    {header: "Rating", field: "artist_rating"},
   ]
 
   constructor() { }

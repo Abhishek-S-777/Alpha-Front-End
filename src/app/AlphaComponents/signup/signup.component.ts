@@ -17,18 +17,24 @@ export class SignupComponent implements OnInit {
   signupGroup = new FormGroup({
     "uname": new FormControl('',Validators.required),
     "uemail": new FormControl('', Validators.required),
-    "upwd": new FormControl('', Validators.required),
+    "upwd": new FormControl('', [Validators.required, Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\\D*\\d)[A-Za-z\\d!$%@#£€*?&]{8,}$')]),
   });
 
   signedUpUserID:any;
   allSongsIDs:any = [];
+  submit: boolean = false;
 
   constructor(private apiService: ApiserviceService,private  dialog:  MatDialog, private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  get userPassword() {
+    return this.signupGroup.get('upwd');
+}
+
   signup(){
+    this.submit = true;
     if(this.signupGroup.valid){
       let pwdHash = Md5.hashStr(this.signupGroup.get("upwd")?.value)
 
@@ -64,7 +70,17 @@ export class SignupComponent implements OnInit {
 
         }
         else{
-          return null
+          console.log("Popup called")
+          const dialogobj =
+          this.dialog.open(PopupComponent,
+            {data:{
+              message: "Unable to signup!"
+            },
+            height : "auto",
+            width : "300px",
+            disableClose: true
+          });
+          return dialogobj;
         }
       })
     }

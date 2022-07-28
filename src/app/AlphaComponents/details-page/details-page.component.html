@@ -1,1 +1,25 @@
-<p>details-page works!</p>
+<div *ngIf="detailsType === 'songs'" class="container">
+
+    <img class = "imgbox" [src] = "detailsData.cover_image" alt="">
+    <h1>{{detailsData.song_name}}</h1>
+    <div>&nbsp;</div>
+    <span>{{detailsData.artist_name}}</span>
+    <div>&nbsp;</div>
+    <span>{{detailsData.release_date}}</span>
+    <div>&nbsp;</div>
+    <app-rating [rating]="detailsData.average_rating" [type]="type"></app-rating>
+
+</div>
+
+<div  *ngIf="detailsType === 'artists'"  class="container">
+
+    <img class = "imgbox" [src] = "detailsData.profile_pic" alt="">
+    <h1>{{detailsData.artist_name}}</h1>
+    <div>&nbsp;</div>
+    <span>{{detailsData.dob}}</span>
+    <div>&nbsp;</div>
+    <span class="box1" >{{detailsData.song_name}}</span>
+    <div>&nbsp;</div>
+    <app-rating class="box2" [rating]="detailsData.average_rating" [type]="type"></app-rating>
+
+</div>

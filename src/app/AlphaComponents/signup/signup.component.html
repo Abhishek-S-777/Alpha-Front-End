@@ -24,11 +24,29 @@
                                   <p class="text-muted mt-2 mb-5">Just Dive in</p>
                                   <form [formGroup]="signupGroup">
                                       <div class="form-group"><label for="yourName">Enter Username:</label><input id="yourName" formControlName="uname" class="form-control" type="text" /></div>
+                                      <small class="text-danger"
+                                          *ngIf="signupGroup.get('uname')?.hasError('required') && submit == true">
+                                          Please enter a valid username
+                                      </small>
                                       <div class="form-group"><label for="exampleInputEmail1">Enter Email-ID:</label><input id="exampleInputEmail1" formControlName="uemail" class="form-control" type="email" /></div>
-                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="password" /></div>
+                                      <small class="text-danger"
+                                          *ngIf="(signupGroup.get('uemail')?.hasError('required') || signupGroup.get('uemail')?.hasError('email')) && submit == true">
+                                          Please enter a valid Email ID
+                                      </small>
+                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="password" />
+                                        <small class="text-danger"
+                                          *ngIf="(signupGroup.get('upwd')?.hasError('required') || signupGroup.get('upwd')?.hasError('pattern') )&& submit == true">
+                                          * Please enter a valid password <br>
+                                          * Minimum 4 characters <br>
+                                          * At least one uppercase <br>
+                                          * At least one lowercase <br>
+                                          * At least one number <br>
+                                          * At least one special character
+                                      </small>
+                                      </div>
                                       <button class="btn btn-theme" (click)="signup()" type="submit">Sign me in</button>&nbsp;
                                   </form>
-                                  <p class="text-muted text-center mt-3 mb-0">Already have an account? <a class="text-primary ml-1" routerLink = "/login">Login</a></p>
+                                  <p class="text-muted text-center mt-3 mb-0">Already have an account?<a class="text-primary ml-1" routerLink = "/login">Login</a></p>
                               </div>
                           </div>
 

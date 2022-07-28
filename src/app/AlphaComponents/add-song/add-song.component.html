@@ -14,8 +14,15 @@
                                   <p class="text-muted mt-2 mb-5">Let the world dive into it.</p>
                                   <form [formGroup]="addSongGroup">
                                       <div class="form-group"><label for="yourName">Song name</label><input id="yourName" formControlName="songname" class="form-control" type="text" /></div>
-                                      <div class="form-group"><label for="exampleInputEmail1">Date of release</label><input id="exampleInputEmail1" formControlName="dateofrelease" class="form-control" type="text" /></div>
-                                      <!-- <div class="form-group mb-5"><label for="exampleInputPassword1">Artists</label><input id="exampleInputPassword1" formControlName="artists" class="form-control" type="text" /></div> -->
+                                      <small class="text-danger"
+                                          *ngIf="addSongGroup.get('songname')?.hasError('required') && submit == true">
+                                          Please enter a valid song name
+                                      </small>
+                                      <div class="form-group"><label for="exampleInputEmail1">Date of release</label><input id="exampleInputEmail1" formControlName="dateofrelease" class="form-control" type="date" /></div>
+                                      <small class="text-danger"
+                                          *ngIf="addSongGroup.get('dateofrelease')?.hasError('required') && submit == true">
+                                          Please select a valid Date of release
+                                      </small>
                                       <div class="form-group ">
                                         <label for="exampleInputPassword1">Artists</label>
                                       <div class="input-group ">
@@ -32,6 +39,10 @@
                                         formControlName="artists"
                                         >
                                         </ng-multiselect-dropdown>
+                                        <small class="text-danger"
+                                          *ngIf="addSongGroup.get('artists')?.hasError('required') && submit == true">
+                                          Please select at least one artist
+                                        </small>
                                         <button class="btn btn-theme input-group-btn" type="button" (click) = "addArtist()">+</button>
                                       </div>
                                     </div>
@@ -43,9 +54,15 @@
                                                <mat-icon>attach_file</mat-icon>
                                            </button>
                                            {{selectedFileName || "No file uploaded yet."}}
+                                           <br>
+                                           <small class="text-danger"
+                                            *ngIf="selectedFileName === '' && submit === true">
+                                            Please select a cover art
+                                          </small>
                                        <!-- </div> -->
                                       </div>
-                                      <button class="btn btn-theme" (click)="addSong()" type="submit">Go</button>&nbsp;
+
+                                      <button class="btn btn-theme" (click)="addSong()" type="button">Go</button>&nbsp;
 
                                   </form>
                               </div>

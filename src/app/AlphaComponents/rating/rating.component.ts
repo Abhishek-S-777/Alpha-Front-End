@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class RatingComponent implements OnInit {
   @Input('rating') rating: number = 3;
+  @Input('type') type: string = '';
   @Output() ratingUpdated = new EventEmitter();
 
   totalStar: number = 5;

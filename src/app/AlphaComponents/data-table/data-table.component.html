@@ -1,26 +1,31 @@
 <div class="container1">
   <span class="headings">{{title}}</span>
-
   <button class="floating" *ngIf = "type == 'songs'" mat-fab (click) = "addSongs()">
     <mat-icon>add</mat-icon>
   </button>
 
-  <div class="spacing">
-
-  </div>
+  <div class="spacing"> </div>
 
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
     <thead>
       <tr>
         <th *ngFor="let key of colData"> {{key.header}} </th>
-        <th>Rating</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of newArray">
-        <td [ngClass]= "{'songs': key.header === 'Songs'}" *ngFor="let key of colData">{{data[key.field]}}</td>
+        <td [ngClass]= "{'songs': key.header === 'Songs'}" *ngFor="let key of colData">
+           <a  (click)= "anchorClick(data)" *ngIf="key.field !== 'cover_image' && key.field !== 'profile_pic' && key.field !== 'song_rating' && key.field !== 'artist_rating' " > {{data[key.field]}} </a>
+           <img class="cover" [src] = "data.cover_image" alt="" *ngIf="key.field == 'cover_image'" >
+           <img class="cover" [src] = "data.profile_pic" alt="" *ngIf="key.field == 'profile_pic'" >
+           <app-rating [rating] = "data.song_rating" (ratingUpdated)="onRatingChanged($event, data)" *ngIf="type == 'songs' && key.header === 'Rating' "></app-rating>
+           <app-rating [rating] = "data.artist_rating" (ratingUpdated)="onRatingChanged($event, data)" *ngIf="type == 'artists' && key.header === 'Rating' "></app-rating>
+        </td>
+
+        <!-- <td [ngClass]= "{'songs': key.header === 'Songs'}" *ngFor="let key of colData"> <a (click)= "anchorClick(data)" > {{data[key.field]}} </a> </td>
+        <td> <img [src] = "data.cover_image" alt=""> </td>
         <td *ngIf="type == 'songs'"><app-rating [rating]="data.song_rating" (ratingUpdated)="onRatingChanged($event, data)"></app-rating></td>
-        <td *ngIf="type == 'artists'"><app-rating [rating]="data.artist_rating" (ratingUpdated)="onRatingChanged($event, data)"></app-rating></td>
+        <td *ngIf="type == 'artists'"><app-rating [rating]="data.artist_rating" (ratingUpdated)="onRatingChanged($event, data)"></app-rating></td> -->
       </tr>
     </tbody>
   </table>

@@ -14,12 +14,21 @@
                                   <p class="text-muted mt-2 mb-5">Groove in to the beat.</p>
                                   <form [formGroup]="loginGroup">
                                       <div class="form-group"><label for="yourName">Enter Email-ID:</label><input id="yourName" formControlName="uemail" class="form-control" type="email" /></div>
-                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="password" /></div>
+                                      <small class="text-danger"
+                                          *ngIf="(loginGroup.get('uemail')?.hasError('required') || loginGroup.get('uemail')?.hasError('email')) && submit == true">
+                                          Please enter a valid Email ID
+                                      </small>
+                                      <div class="form-group mb-5"><label for="exampleInputEmail1">Enter Password:</label><input id="exampleInputEmail1" formControlName="upwd" class="form-control" type="password" />
+                                        <small class="text-danger"
+                                          *ngIf="loginGroup.get('upwd')?.hasError('required') && submit == true">
+                                          Please enter a valid password
+                                        </small>
+                                      </div>
 
                                       <button class="btn btn-theme" (click)="login()" type="submit">Log me in</button>&nbsp;
 
                                   </form>
-                                  <p class="text-muted text-center mt-3 mb-0">Not an user? <a class="text-primary ml-1" routerLink = "/signup">Signup</a></p>
+                                  <p class="text-muted text-center mt-3 mb-0">Not an user?<a class="text-primary ml-1" routerLink = "/signup">Signup</a></p>
                               </div>
                           </div>
                           <div class="col-lg-6 d-none d-lg-inline-block">

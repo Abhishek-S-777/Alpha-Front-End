@@ -9,14 +9,32 @@
   color: rgb(255, 255, 255);
 }
 
+.center{
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.cover{
+  // height: auto;
+  // max-width: 100%;
+  height: 70px;
+  width: 110px;
+  border-radius:5px;
+}
+
 .spacing{
   margin-top: 20px !important;
 }
 
 .floating{
-  float: right;
+  // position: absolute;
+  top: 20%;
+  left: 40%;
   background-color: #5369f8;
-  margin-right: 50px;
 }
 
 th.sorting {

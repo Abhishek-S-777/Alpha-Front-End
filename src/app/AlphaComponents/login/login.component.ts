@@ -15,13 +15,14 @@ import { PopupComponent } from '../popup/popup.component';
 export class LoginComponent implements OnInit {
 
   loginGroup = new FormGroup({
-    "uemail": new FormControl('',Validators.required),
+    "uemail": new FormControl('',[Validators.required, Validators.email]),
     "upwd": new FormControl('', Validators.required),
   });
 
   userData : any;
   pwdMD5Hash:any;
   userId:any;
+  submit: boolean = false;
 
   constructor(private apiService: ApiserviceService,private  dialog:  MatDialog, private router:Router) { }
 
@@ -29,40 +30,62 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append("email",this.loginGroup.get("uemail")?.value);
-    this.apiService.userLogin(queryParams).subscribe(res =>{
-      this.userData = res.data[0];
-      console.log(this.userData);
-      this.pwdMD5Hash = Md5.hashStr(this.loginGroup.get("upwd")?.value)
-      if(this.pwdMD5Hash == this.userData.upassword){
-        console.log(typeof(this.userData.userid))
-        localStorage.setItem("userID", this.userData.userid);
-        // console.log("user ID:", this.userId)
-      const dialogobj =
-      this.dialog.open(PopupComponent,
-        {
-          data:
+    this.submit = true;
+    if(this.loginGroup.valid){
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append("email",this.loginGroup.get("uemail")?.value);
+      this.apiService.userLogin(queryParams).subscribe(res =>{
+        this.userData = res.data[0];
+        console.log(this.userData);
+        this.pwdMD5Hash = Md5.hashStr(this.loginGroup.get("upwd")?.value)
+        if(this.pwdMD5Hash == this.userData.upassword){
+          console.log(typeof(this.userData.userid))
+          localStorage.setItem("userID", this.userData.userid);
+          // console.log("user ID:", this.userId)
+        const dialogobj =
+        this.dialog.open(PopupComponent,
           {
-            message: "Login Successful!"
-          },
-        height : "auto",
-        width : "275px",
-        disableClose: true
-      });
+            data:
+            {
+              message: "Login Successful!"
+            },
+          height : "auto",
+          width : "275px",
+          disableClose: true
+        });
 
-        dialogobj.afterClosed().subscribe(()=>{
-          this.router.navigate(['/']).then(()=>{
-            window.location.reload();
+          dialogobj.afterClosed().subscribe(()=>{
+            this.router.navigate(['/']).then(()=>{
+              window.location.reload();
+            })
           })
-        })
-        return dialogobj;
-      }
-      else{
-        console.log("Login Failed, incorrect credentials");
-        return null
-      }
-    })
+          return dialogobj;
+        }
+        else{
+          const dialogobj =
+          this.dialog.open(PopupComponent,
+            {
+              data:
+              {
+                message: "Login failed! check credentials"
+              },
+            height : "auto",
+            width : "350px",
+            disableClose: true
+          });
+
+            // dialogobj.afterClosed().subscribe(()=>{
+            //   this.router.navigate(['/']).then(()=>{
+            //     window.location.reload();
+            //   })
+            // })
+            return dialogobj;
+          // console.log("Login Failed, incorrect credentials");
+          // return null
+        }
+      })
+    }
+
 
   }
 
