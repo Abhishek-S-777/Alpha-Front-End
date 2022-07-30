@@ -12,7 +12,7 @@ Alpha is a Spotify like music streaming application, where users can register th
 * **Top 10 artists and songs** are displayed on the home page based on the **average rating calculated from all the registered users**.
 * Users can **rate** individual songs and artists and also can **search** for songs and artists based on any details of a particular song or artist.
 * When users click on the songs or artists, they are redirected to the **details page**, where they can view all details such as name, average rating, etc.
-* In the details page uses can **stream**, **download** and **alter the playback speed** of the song  as well.
+* In the details page users can **stream**, **download** and **alter the playback speed** of the song  as well.
 * New songs can be **added** to the collection easily and if the artist for the song does not exist it can be **added dynamically** from the same page.
 * **Required-field** and **DOB** validations are present.
 
