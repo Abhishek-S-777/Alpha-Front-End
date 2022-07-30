@@ -14,13 +14,14 @@ Alpha is a Spotify like music streaming application, where users can register th
 * When users click on the songs or artists, they are redirected to the **details page**, where they can view all details such as name, average rating, etc.
 * In the details page uses can **stream**, **download** and **alter the playback speed** of the song  as well.
 * New songs can be **added** to the collection easily and if the artist for the song does not exist it can be **added dynamically** from the same page.
+* **Required-field** and **DOB** validations are present.
 
 
 #### Back-end Features ####
 * Link to [Alpha Back-end repository](https://github.com/Abhishek-S-777/Alpha-Back-End)
 * Database name for creating: **alpha**
 * Link to [alpha MySQL DB generation script](https://github.com/Abhishek-S-777/Alpha-Front-End/files/9227123/alpha.zip)
-* Link [Alpha database design](https://github.com/Abhishek-S-777/Alpha-Front-End/files/9226624/Alpha-DB.Design.pdf)
+* Link to [Alpha database design](https://github.com/Abhishek-S-777/Alpha-Front-End/files/9226624/Alpha-DB.Design.pdf)
 * The database is built using **SQL** database, **MySQL** has been chosen as the database as it supports large database and is very much reliable and fast.
 * There are a total of **7 tables**, which are **normalized (2NF)**.
 * **Node JS** is used as the back-end to connect the front-end to the database using the **REST APIs**.
