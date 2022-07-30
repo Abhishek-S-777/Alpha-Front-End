@@ -40,6 +40,11 @@ Alpha is a Spotify like music streaming application, where users can register th
 * Run the `nodemon index.js` command in the root of the Alpha-Back-End folder to start the **Node JS server** 
 * Run the `ng s` command in the root of the Alpha-Front-End folder to start the **Angular web server**
 
+### Sample Screenshots ###
+
+***Sign up page:***
+
+![Screenshot (623)](https://user-images.githubusercontent.com/89989890/181925555-70f200c3-55db-4259-a5f8-65ae3b2acfa3.png)
 
 
 
