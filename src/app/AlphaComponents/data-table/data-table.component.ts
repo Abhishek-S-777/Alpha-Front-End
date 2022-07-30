@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { ApiserviceService } from 'src/app/AlphaServices/apiservice.service';
+import { Track } from 'ngx-audio-player';
 
 @Component({
   selector: 'app-data-table',
@@ -35,6 +36,7 @@ export class DataTableComponent implements OnInit {
   newArray:any = [];
   chromeServerURL = 'http://127.0.0.1:8887/';
   cover_img: string = '';
+  audio:string = '';
   top10Songs:any = [];
 
 
@@ -44,6 +46,8 @@ export class DataTableComponent implements OnInit {
   artistTableData: any = [];
   profile_pic: string = '';
   title:string = "";
+
+
 
   constructor(private apiService: ApiserviceService, private router:Router) { }
 
@@ -112,29 +116,29 @@ export class DataTableComponent implements OnInit {
     this.router.navigate(['/addsong'])
   }
   anchorClick(data:any){
-    var detailsField: any = [];
-    if(this.type == "songs"){
-      // detailsField = [
-      //   {field: "cover_image"},
-      //   {field: "song_name"},
-      //   {field: "artist_name"},
-      //   {field: "release_date"},
-      //   {field: "average_rating"},
-      // ];
-    }
+    // var detailsField: any = [];
+    // if(this.type == "songs"){
+    //   // detailsField = [
+    //   //   {field: "cover_image"},
+    //   //   {field: "song_name"},
+    //   //   {field: "artist_name"},
+    //   //   {field: "release_date"},
+    //   //   {field: "average_rating"},
+    //   // ];
+    // }
 
-    else if(this.type == "artists"){
-      // detailsField = [
-      //   {field: "profile_pic"},
-      //   {field: "artist_name"},
-      //   {field: "dob"},
-      //   {field: "song_name"},
-      //   {field: "average_rating"},
-      // ];
-    }
+    // else if(this.type == "artists"){
+    //   // detailsField = [
+    //   //   {field: "profile_pic"},
+    //   //   {field: "artist_name"},
+    //   //   {field: "dob"},
+    //   //   {field: "song_name"},
+    //   //   {field: "average_rating"},
+    //   // ];
+    // }
 
     localStorage.setItem("details", JSON.stringify(data));
-    localStorage.setItem("field", JSON.stringify(detailsField));
+    // localStorage.setItem("field", JSON.stringify(detailsField));
     // this.apiService.setDetailsData(data);
     this.router.navigate(['/detailspage',{type: this.type}]);
 
@@ -187,8 +191,12 @@ export class DataTableComponent implements OnInit {
           this.newArray.forEach((element:any) => {
             // if using running the  node js application locally.
             this.cover_img = element.cover_image;
-            var sub_string = this.cover_img.substring(this.cover_img.lastIndexOf("/") + 1, this.cover_img.length)
+            var sub_string = this.cover_img.substring(this.cover_img.lastIndexOf("/") + 1, this.cover_img.length);
             element.cover_image = this.chromeServerURL + sub_string;
+
+            this.audio = element.audio;
+            var sub_string1 = this.audio.substring(this.audio.lastIndexOf("/") + 1, this.audio.length)
+            element.audio = this.chromeServerURL + 'audios/' + sub_string1;
 
             // // if running the node js application from a server.
             // this.cover_img = element.cover_image;

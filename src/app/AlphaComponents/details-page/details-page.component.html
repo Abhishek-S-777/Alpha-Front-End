@@ -8,6 +8,10 @@
     <span>{{detailsData.release_date}}</span>
     <div>&nbsp;</div>
     <app-rating [rating]="detailsData.average_rating" [type]="type"></app-rating>
+    <audio class="audio" [src] = "detailsData.audio" type="audio/mp3" controls id="player">
+      <!-- <source src="http://127.0.0.1:8887/blessthelord.mp3" type="audio/mp3">
+      Your browser does not support the audio tag. -->
+    </audio>
 
 </div>
 

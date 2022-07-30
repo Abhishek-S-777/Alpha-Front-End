@@ -34,30 +34,45 @@
                                         [(ngModel)] = "selectedItems"
                                         (onSelect)="onItemSelect($event)"
                                         (onSelectAll)="onSelectAll($event)"
-                                        class="form-group flex .custom-font-size .multiselect-dropdown .dropdown-btn"
+                                        class="form-group flex"
 
                                         formControlName="artists"
                                         >
                                         </ng-multiselect-dropdown>
-                                        <small class="text-danger"
-                                          *ngIf="addSongGroup.get('artists')?.hasError('required') && submit == true">
-                                          Please select at least one artist
-                                        </small>
                                         <button class="btn btn-theme input-group-btn" type="button" (click) = "addArtist()">+</button>
                                       </div>
+                                      <small class="text-danger"
+                                        *ngIf="addSongGroup.get('artists')?.hasError('required') && submit == true">
+                                        Please select at least one artist
+                                      </small>
                                     </div>
-                                      <div class="form-group mb-5"><label for="yourName">Upload Cover Art</label> <br>
+                                      <div class="form-group"><label for="yourName">Upload Cover Art</label> <br>
                                         <input id="myInput" type="file" accept=".png, .jpg, .jpeg" class="file-input" (change)="onFileSelected($event)" #fileUpload>
                                         <!-- <div class="file-upload"> -->
                                            <button mat-mini-fab color="primary" class="upload-btn"
                                              (click)="fileUpload.click()">
                                                <mat-icon>attach_file</mat-icon>
                                            </button>
-                                           {{selectedFileName || "No file uploaded yet."}}
+                                           {{selectedFileName || "No Art uploaded yet."}}
                                            <br>
                                            <small class="text-danger"
                                             *ngIf="selectedFileName === '' && submit === true">
                                             Please select a cover art
+                                          </small>
+                                       <!-- </div> -->
+                                      </div>
+                                      <div class="form-group mb-5"><label >Upload Song</label> <br>
+                                        <input id="myAudioInput" type="file" accept=".mp3, .ogg, .wav" class="file-input" (change)="onSongSelected($event)" #songUpload>
+                                        <!-- <div class="file-upload"> -->
+                                           <button mat-mini-fab color="primary" class="upload-btn"
+                                             (click)="songUpload.click()">
+                                               <mat-icon>attach_file</mat-icon>
+                                           </button>
+                                           {{selectedSongFileName || "No song uploaded yet."}}
+                                           <br>
+                                           <small class="text-danger"
+                                            *ngIf="selectedSongFileName === '' && submit === true">
+                                            Please select a song
                                           </small>
                                        <!-- </div> -->
                                       </div>

@@ -21,6 +21,7 @@ export class AllSongsComponent implements OnInit {
     {header: "Release", field: "release_date"},
     {header: "Artists", field: "artist_name"},
     {header: "Rating", field: "song_rating"},
+    // {header: "Audio", field: "audio"},
   ]
 
   ngOnInit(): void {

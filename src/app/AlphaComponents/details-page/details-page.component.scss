@@ -15,8 +15,15 @@
   background: #232427;
   display: grid;
   grid-template-columns: 300px 500px;
-  grid-template-rows: 50px 35px 0fr;
+  grid-template-rows: 50px 35px 0fr 0fr;
   flex-wrap: wrap;
+}
+
+.audio{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  // grid-row-start: 4;
+  // grid-row-start: 5;
 }
 
 span{

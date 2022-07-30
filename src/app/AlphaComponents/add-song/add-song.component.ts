@@ -36,7 +36,11 @@ export class AddSongComponent implements OnInit {
   data:any;
   id:any;
   selectedFile !: File;
+  selectedSongFile !: File;
+
   selectedFileName : string = '';
+  selectedSongFileName : string = '';
+
   allArtists : any = [];
   formData =  new FormData();
   isUploaded:boolean = false;
@@ -101,6 +105,7 @@ export class AddSongComponent implements OnInit {
       this.formData.append("artists",this.addSongGroup.get("artists")?.value)
 
       console.log("Form data", this.formData.get("cover_image"));
+      console.log("Form data", this.formData.get("song"));
 
       this.apiService.insertSongBaseTable(this.formData).subscribe(res=>{
         console.log(res);
@@ -157,13 +162,25 @@ export class AddSongComponent implements OnInit {
   }
 
   onFileSelected(event:any) {
-
+    console.log("Cover select triggered")
     this.selectedFile = event.target.files[0];
     this.formData.append("cover_image", this.selectedFile, this.selectedFile.name)
     console.log(this.selectedFile)
 
     this.selectedFileName = this.selectedFile.name
     console.log(this.selectedFile.name);
+
+  }
+  onSongSelected(event:any) {
+
+    console.log("Song select triggered")
+    this.selectedSongFile = event.target.files[0];
+    this.formData.append("song_file", this.selectedSongFile, this.selectedSongFile.name)
+    console.log(this.selectedSongFile)
+
+    this.selectedSongFileName = this.selectedSongFile.name
+    console.log(this.selectedSongFile.name);
+
   }
 
 }

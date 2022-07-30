@@ -1,8 +1,12 @@
 body{
   background: #232427;
-  // min-height: 75rem;
+  // min-height: 55rem;
   // padding-top: 4.5rem;
 }
+
+// .container{
+
+// }
 
 .spacing{
   padding-top: 50px;
@@ -13,12 +17,9 @@ body{
 }
 
 .flex {
-  width: 90%
+  width: 90%;
+  // position: absolute;
 }
-
-// .custom-font-size .multiselect-dropdown .dropdown-btn {
-//   width: 100pt !important;
-// }
 
 .account-block {
   padding: 0;

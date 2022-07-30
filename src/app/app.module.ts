@@ -31,7 +31,8 @@ import { AllSongsComponent } from './AlphaComponents/all-songs/all-songs.compone
 import { AllArtistsComponent } from './AlphaComponents/all-artists/all-artists.component';
 import { ContactUsComponent } from './AlphaComponents/contact-us/contact-us.component';
 import { DetailsPageComponent } from './AlphaComponents/details-page/details-page.component';
-
+import { AngMusicPlayerModule } from  'ang-music-player';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,8 @@ import { DetailsPageComponent } from './AlphaComponents/details-page/details-pag
     MatInputModule,
     MatFormFieldModule,
     DataTablesModule,
+    AngMusicPlayerModule,
+    NgxAudioPlayerModule,
 
   ],
   exports:[

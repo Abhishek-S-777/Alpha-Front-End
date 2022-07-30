@@ -15,12 +15,23 @@
     <tbody>
       <tr *ngFor="let data of newArray">
         <td [ngClass]= "{'songs': key.header === 'Songs'}" *ngFor="let key of colData">
-           <a  (click)= "anchorClick(data)" *ngIf="key.field !== 'cover_image' && key.field !== 'profile_pic' && key.field !== 'song_rating' && key.field !== 'artist_rating' " > {{data[key.field]}} </a>
+           <a  (click)= "anchorClick(data)" *ngIf="key.field !== 'cover_image' && key.field !== 'profile_pic' && key.field !== 'song_rating' && key.field !== 'artist_rating' && key.field !== 'audio' " > {{data[key.field]}} </a>
            <img class="cover" [src] = "data.cover_image" alt="" *ngIf="key.field == 'cover_image'" >
            <img class="cover" [src] = "data.profile_pic" alt="" *ngIf="key.field == 'profile_pic'" >
            <app-rating [rating] = "data.song_rating" (ratingUpdated)="onRatingChanged($event, data)" *ngIf="type == 'songs' && key.header === 'Rating' "></app-rating>
            <app-rating [rating] = "data.artist_rating" (ratingUpdated)="onRatingChanged($event, data)" *ngIf="type == 'artists' && key.header === 'Rating' "></app-rating>
-        </td>
+          </td>
+          <!-- <td>
+
+          </td> -->
+          <!-- <td>
+            <ngx-audio-player class="audioPlayer" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
+              muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions "
+              [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
+              [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist"
+              [displayDuration]="msaapDisplayDuration" [expanded]="true">
+            </ngx-audio-player>
+          </td> -->
 
         <!-- <td [ngClass]= "{'songs': key.header === 'Songs'}" *ngFor="let key of colData"> <a (click)= "anchorClick(data)" > {{data[key.field]}} </a> </td>
         <td> <img [src] = "data.cover_image" alt=""> </td>

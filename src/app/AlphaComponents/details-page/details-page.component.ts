@@ -25,6 +25,8 @@ export class DetailsPageComponent implements OnInit {
     console.log("Details data: ",this.detailsData);
     console.log("detailsField: ",this.detailsField);
     console.log("detailsType: ",this.detailsType);
+
+    
   }
 
 }
