@@ -20,7 +20,7 @@ Alpha is a Spotify like music streaming application, where users can register th
 #### Back-end Features ####
 * Link to [Alpha Back-end repository](https://github.com/Abhishek-S-777/Alpha-Back-End)
 * Database name to be created: `alpha`
-* Link to [alpha MySQL DB generation script](https://github.com/Abhishek-S-777/Alpha-Front-End/files/9227123/alpha.zip)
+* Link to [Alpha MySQL DB generation script](https://github.com/Abhishek-S-777/Alpha-Front-End/files/9227123/alpha.zip)
 * Link to [Alpha database design](https://github.com/Abhishek-S-777/Alpha-Front-End/files/9226624/Alpha-DB.Design.pdf)
 * The database is built using **SQL** database, **MySQL** has been chosen as the database as it supports large database and is very much reliable and fast.
 * There are a total of **7 tables**, which are **normalized (2NF)**.
@@ -46,6 +46,7 @@ Alpha is a Spotify like music streaming application, where users can register th
 
 ### Website Demo ###
 
+https://user-images.githubusercontent.com/89989890/182037182-303d4ee6-261a-4d2f-bde2-84f0a89ec094.mp4
 
 ### Screenshots ###
 
