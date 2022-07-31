@@ -15,14 +15,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.headings1{
-
-  color: #ffffff;
-  font-size: 30px;
-  font-weight: 750;
-  font-family: "Poppins", sans-serif;
-}
-
 
 body {
   display: flex;
@@ -31,11 +23,8 @@ body {
   flex-wrap: wrap;
   min-height: 100vh;
   background: #232427;
-  // min-height: 75rem;
-  // padding-top: 4.5rem;
 }
 
-$table-control-color: #5f21db !default;
 
 body .container {
   display: flex;
@@ -110,7 +99,6 @@ body .container .card .box .content h2 {
   right: 30px;
   font-size: 8rem;
   color: rgba(255, 255, 255, 0.1);
-
 }
 
 body .container .card .box .content h3 {
@@ -275,12 +263,6 @@ body{
   letter-spacing: 1px;
   color: #fff;
   margin: 0;
-
-  display: block;
-  width: 300px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .container .card .contentBx .size, .container .card .contentBx .color {
@@ -313,101 +295,6 @@ body{
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-right: 10px;
-
-  display: block;
-  width: 250px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.tabledesign{
-  // margin: 10px;
-  padding: 10px;
-}
-
-// .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-//   cursor: default;
-//   color: wheat !important;
-//   border: 1px solid transparent;
-//   background: transparent;
-//   box-shadow: none;
-// }
-
-th.sorting {
-  color: wheat;
-}
-th.sorting.songs {
-  width: 550px;
-}
-
-div.dataTables_wrapper {
-	div.dataTables_length {
-		label {
-			font-weight: normal;
-			text-align: left;
-      color: pink;
-			white-space: nowrap;
-		}
-
-		select {
-			width: auto;
-			display: inline-block;
-		}
-	}
-
-	div.dataTables_filter {
-		text-align: right;
-
-		label {
-			font-weight: normal;
-			white-space: nowrap;
-			text-align: left;
-		}
-
-		input {
-			margin-left: 0.5em;
-			display: inline-block;
-			width: auto;
-		}
-	}
-
-	div.dataTables_info {
-		padding-top: 0.85em;
-	}
-
-	div.dataTables_paginate {
-		margin: 0;
-		white-space: nowrap;
-		text-align: right;
-
-		ul.pagination {
-			margin: 2px 0;
-			white-space: nowrap;
-			justify-content: flex-end;
-		}
-	}
-
-	div.dataTables_processing {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 200px;
-		margin-left: -100px;
-		margin-top: -26px;
-		text-align: center;
-		padding: 1em 0;
-	}
-}
-
-.container1{
-  display: list-item;
-  padding: 10px;
-  padding-left: 45px;
-  padding-right: 45px;
-  padding-top: 20px;
-  background-color: #232427;
-  color: rgb(255, 255, 255);
 }
 
 .container .card .contentBx .size span{
