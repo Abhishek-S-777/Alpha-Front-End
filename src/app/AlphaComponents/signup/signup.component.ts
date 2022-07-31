@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
     "uname": new FormControl('',Validators.required),
     "uemail": new FormControl('', Validators.required),
     "upwd": new FormControl('', [Validators.required, Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\\D*\\d)[A-Za-z\\d!$%@#£€*?&]{8,}$')]),
+    "upwdHash": new FormControl(''),
   });
 
   signedUpUserID:any;
@@ -39,7 +40,7 @@ export class SignupComponent implements OnInit {
       let pwdHash = Md5.hashStr(this.signupGroup.get("upwd")?.value)
 
       this.signupGroup.patchValue({
-        "upwd": pwdHash,
+        "upwdHash": pwdHash,
       })
       console.log(this.signupGroup.value)
       this.apiService.userSignup(this.signupGroup.value).subscribe(res=>{
