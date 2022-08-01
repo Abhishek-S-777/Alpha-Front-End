@@ -24,6 +24,8 @@ export class SignupComponent implements OnInit {
   signedUpUserID:any;
   allSongsIDs:any = [];
   submit: boolean = false;
+  allUserData:any = [];
+  emailIDExists:boolean = false;
 
   constructor(private apiService: ApiserviceService,private  dialog:  MatDialog, private router:Router) { }
 
@@ -32,63 +34,96 @@ export class SignupComponent implements OnInit {
 
   get userPassword() {
     return this.signupGroup.get('upwd');
-}
+  }
 
   signup(){
     this.submit = true;
+
+
+
     if(this.signupGroup.valid){
-      let pwdHash = Md5.hashStr(this.signupGroup.get("upwd")?.value)
+      this.apiService.getUserData().subscribe(res=>{
+        this.allUserData = res.data;
+        console.log(this.allUserData)
 
-      this.signupGroup.patchValue({
-        "upwdHash": pwdHash,
-      })
-      console.log(this.signupGroup.value)
-      this.apiService.userSignup(this.signupGroup.value).subscribe(res=>{
-        // this.apiService.userSingupID().subscribe(res=>{
-        //   this.signedUpUserID = res.data[0].id
-        //   console.log("User signed up ID", this.signedUpUserID)
-        //   // this.apiService.getSongBaseTable().subscribe(res=>{
-        //   //   this.allSongsIDs = res.data;
-        //   //   console.log("All songs IDs", this.allSongsIDs)
-        //   // })
-        // })
-        if(res){
-          console.log("Popup called")
-          const dialogobj =
-          this.dialog.open(PopupComponent,
-            {data:{
-              message: "Sign up successful!"
-            },
-            height : "auto",
-            width : "300px",
-            disableClose: true
-          });
+        this.allUserData.forEach((element:any) => {
+          // if(element.uemail == this.signupGroup.get("uemail")?.value){
+          if(element.uemail == "abhi@gmail.com"){
+            this.emailIDExists = true;
+          }
+        });
 
-          dialogobj.afterClosed().subscribe(()=>{
-            this.router.navigate(['/login'])
+        console.log(this.emailIDExists);
+        if(this.emailIDExists == false){
+          let pwdHash = Md5.hashStr(this.signupGroup.get("upwd")?.value)
+
+          this.signupGroup.patchValue({
+            "upwdHash": pwdHash,
           })
-          return dialogobj;
+          console.log(this.signupGroup.value)
+          this.apiService.userSignup(this.signupGroup.value).subscribe(res=>{
+            // this.apiService.userSingupID().subscribe(res=>{
+            //   this.signedUpUserID = res.data[0].id
+            //   console.log("User signed up ID", this.signedUpUserID)
+            //   // this.apiService.getSongBaseTable().subscribe(res=>{
+            //   //   this.allSongsIDs = res.data;
+            //   //   console.log("All songs IDs", this.allSongsIDs)
+            //   // })
+            // })
+            if(res){
+              console.log("Popup called")
+              const dialogobj =
+              this.dialog.open(PopupComponent,
+                {data:{
+                  message: "Sign up successful!"
+                },
+                height : "auto",
+                width : "300px",
+                disableClose: true
+              });
+
+              dialogobj.afterClosed().subscribe(()=>{
+                this.router.navigate(['/login'])
+              })
+              return dialogobj;
+
+            }
+            else{
+              console.log("Popup called")
+              const dialogobj =
+              this.dialog.open(PopupComponent,
+                {data:{
+                  message: "Unable to signup!"
+                },
+                height : "auto",
+                width : "300px",
+                disableClose: true
+              });
+              return dialogobj;
+            }
+          })
 
         }
         else{
           console.log("Popup called")
-          const dialogobj =
-          this.dialog.open(PopupComponent,
-            {data:{
-              message: "Unable to signup!"
-            },
-            height : "auto",
-            width : "300px",
-            disableClose: true
-          });
-          return dialogobj;
+              const dialogobj =
+              this.dialog.open(PopupComponent,
+                {data:{
+                  message: "Email ID already exists!"
+                },
+                height : "auto",
+                width : "350px",
+                disableClose: true
+              });
+
+              dialogobj.afterClosed().subscribe(()=>{
+                this.signupGroup.reset();
+                this.submit = false;
+              })
+              return dialogobj;
         }
+        return null;
       })
     }
   }
-
-
-
-
-
 }
